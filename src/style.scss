@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* poppins */
+
+@font-face {
+    font-family: poppins;
+    src: url(../public/fonts/poppins/Poppins-Light.ttf);                
+    font-weight: 300;
+  }
+  
+  @font-face {
+    font-family: poppins;
+    src: url(../public/fonts/poppins/Poppins-Regular.ttf);                
+    font-weight: 400;
+  }
+  
+  @font-face {
+    font-family: poppins;
+    src: url(../public/fonts/poppins/Poppins-Medium.ttf);                
+    font-weight: 500;
+  }
+  
+  @font-face {
+    font-family: poppins;
+    src: url(../public/fonts/poppins/Poppins-SemiBold.ttf);                
+    font-weight: 600;
+  }
+  
+  @font-face {
+    font-family: poppins;
+    src: url(../public/fonts/poppins/Poppins-Bold.ttf);                
+    font-weight: 700;
+  }
+  
+  .poppins {
+    font-family: poppins;
+  }
+  
+  /* inter */
+  
+  @font-face {
+    font-family: inter;
+    src: url(../public/fonts/inter/Inter-Light.ttf);                
+    font-weight: 300;
+  }
+  
+  @font-face {
+    font-family: inter;
+    src: url(../public/fonts/inter/Inter-Regular.ttf);                
+    font-weight: 400;
+  }
+  
+  @font-face {
+    font-family: inter;
+    src: url(../public/fonts/inter/Inter-Medium.ttf);                
+    font-weight: 500;
+  }
+  
+  @font-face {
+    font-family: inter;
+    src: url(../public/fonts/inter/Inter-SemiBold.ttf);                
+    font-weight: 600;
+  }
+  
+  @font-face {
+    font-family: inter;
+    src: url(../public/fonts/inter/Inter-Bold.ttf);                
+    font-weight: 700;
+  }
+  
+  .inter {
+    font-family: inter;
+  }
+  
+
+@layer base {
+    html {
+        font-family: "inter", system-ui, sans-serif;
+    }
+    h1 {
+        font-size: 40px;
+        line-height: 48px;
+        font-family: "poppins", system-ui, sans-serif;
+    }
+    h2 {
+        font-size: 32px;
+        line-height: 40px;
+        font-family: "poppins", system-ui, sans-serif;
+    } 
+    h3 {
+        font-size: 24px;
+        line-height: 28px;
+        font-family: "poppins", system-ui, sans-serif;
+    } 
+    h4 {
+        font-size: 20px;
+        line-height: 24px;
+        font-family: "poppins", system-ui, sans-serif;
+    } 
+    h5 {
+        font-size: 16px;
+        line-height: 20px;
+        font-family: "poppins", system-ui, sans-serif;
+    } 
+}
+
+html {
+  overflow: hidden;
+  background-color: #0B0B0B;
+}
+
+.purple-gradient-wrapper {
+  background: linear-gradient(180deg, rgba(172, 112, 239, 0.10) 0%, rgba(176, 114, 245, 0.05) 100%)
+}
+
+.instrument-blocks-bg {
+  background:  linear-gradient(180deg, #1D1D1E 0%, rgba(29, 29, 30, 0.00) 125.15%);
+}
+
+.absolute_blocks_gradient {
+  background: linear-gradient(180deg, rgba(29, 29, 30, 0.50) 0%, rgba(29, 29, 30, 0.00) 100%);
+}
+
+.second_absolute_blocks_gradient {
+  background: linear-gradient(180deg, rgba(29, 29, 30, 0.30) 0%, rgba(29, 29, 30, 0.00) 100%);
+}
+
+.partners-block-bg {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+
+.level-avtivating-block {
+  box-shadow: 0px -10px 40px 0px rgba(0, 0, 0, 0.20);
+}
+
+.level-activating-bg {
+  background-image: url('../public/images/instrument/activating/bg.png');
+  background-size: cover;
+  background-repeat: round;
+  @media (max-width: 767px) {
+    background-image: url('../public/images/instrument/activating/bgMob.png');
+    background-size: cover;
+	}
+  // transform: scale(1);
+	// animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.995);
+	}
+	70% {
+		transform: scale(1);
+	}
+  100% {
+		transform: scale(0.995);
+	}
+
+}
+
+.user-profit-bg {
+  background-image: url('../public/images/dashboard/profitInfo/bgShadow.png');
+  background-size: cover;
+  background-repeat: round;
+  @media (max-width: 767px) {
+    background-image: none;
+	}
+}
+
+.left_bar_size {
+  width: 30%;
+  @media (max-width: 1454px) {
+    width: 280px;
+	}
+}
+
+.hideSemiCircleProgressBarText {
+  display: none;
+}
+
+.levelActivateModalBg {
+  background: radial-gradient(182.94% 107.94% at 50% -7.94%, rgba(235, 255, 41, 0.30) 0%, rgba(0, 0, 0, 0.00) 66.39%), rgba(255, 255, 255, 0.05);
+}
+
+.ffff {
+  border-radius: 24px;
+  border: 1px solid #292929;
+  background: rgba(255, 255, 255, 0.50);
+  background-blend-mode: overlay;
+  box-shadow: 0px 25px 40px 0px rgba(0, 0, 0, 0.05), 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(100px);
+}
+
+.yellow_border_color {
+  background: linear-gradient(150deg,rgba(235, 255, 41, 1), rgba(235, 255, 41, 0.3), rgba(235, 255, 41, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) );
+}
+
+.purple_border_color {
+  background: linear-gradient(150deg, rgba(104, 80, 243, 1), rgba(104, 80, 243, 0.3), rgba(104, 80, 243, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+.purple_circle_bg{
+  background-color:#6850F3;
+}

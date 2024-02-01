@@ -1,0 +1,51 @@
+export const levelPriceList = [
+  {
+    lvl: 1,
+    price: 10,
+    days: 13,
+    tokenCounts: 20,
+    isActive: true,
+  },
+  {
+    lvl: 2,
+    price: 20,
+    days: 16,
+    tokenCounts: 20,
+    isActive: true,
+  },
+  {
+    lvl: 3,
+    price: 30,
+    days: 17,
+    tokenCounts: 20,
+    isActive: false,
+  },
+  {
+    lvl: 4,
+    price: 40,
+    days: 18,
+    tokenCounts: 20,
+    isActive: false,
+  },
+  {
+    lvl: 5,
+    price: 50,
+    days: 19,
+    tokenCounts: 20,
+    isActive: false,
+  },
+  {
+    lvl: 6,
+    price: 60,
+    days: 20,
+    tokenCounts: 20,
+    isActive: false,
+  },
+  {
+    lvl: 7,
+    price: 70,
+    days: 21,
+    tokenCounts: 20,
+    isActive: false,
+  },
+];
