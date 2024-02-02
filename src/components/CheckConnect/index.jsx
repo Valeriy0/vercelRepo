@@ -6,8 +6,9 @@ import { WALLETS } from '../../connectors/wallets';
 import { useTryActivation } from '../../helpers/hooks/useTryActivation';
 import loadingQornexAnimation from '../../animations/loadingQornex.json';
 import { updateUser } from '../../store/userSlice';
+import { updateMatrixB } from '../../store/matrixBSlice';
 import { useLazyQuery } from '@apollo/client';
-import { GET_USER_DATA } from '../../helpers/graphRequests';
+import { GET_USER_DATA, GET_MATRIX_DATA } from '../../helpers/graphRequests';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../store/userSlice/selectors';
 import { useCheckReflink } from '../../helpers/hooks/useCheckReflink';
@@ -17,8 +18,8 @@ export const CheckConnect = () => {
   const dispatch = useDispatch();
   const { account } = useWeb3React();
   const currentUser = useSelector(getUser);
-  const [callRequest, { called, loading, data }] = useLazyQuery(GET_USER_DATA, { variables: { user: null } });
-
+  const [callRequest, { called, loading, data }] = useLazyQuery(GET_USER_DATA, { variables: { user: null }, fetchPolicy: "cache-and-network" });
+  const [callRequestMatrix] = useLazyQuery(GET_MATRIX_DATA, { variables: { user: null }, fetchPolicy: "cache-and-network" });
   const isNeedToRegister = account && !data?.user?.id && !loading && called;
   const { uplineKey, checkReflink } = useCheckReflink();
 
@@ -28,14 +29,28 @@ export const CheckConnect = () => {
     }
   }, [isNeedToRegister]);
 
+  const initUserInfo = (userAddress) => {
+    callRequest({ variables: { user: userAddress.toLocaleLowerCase() } }).then((result) => {
+      if (!!result?.data?.user?.id) {
+        const { id, refNumber, referral } = result?.data?.user;
+        dispatch(updateUser({ id, refNumber, referral }));
+      }
+    });
+    callRequestMatrix({ variables: { user: userAddress.toLocaleLowerCase() } }).then((result) => {
+      if (!!result?.data?.user?.levels) {
+        console.log(result);
+        dispatch(updateMatrixB({
+          loading: result?.loading,
+          called: result?.called,
+          levels: result?.data?.user?.levels,
+        }));
+      }
+    });
+  };
+
   useEffect(() => {
     if (account) {
-      callRequest({ variables: { user: account.toLocaleLowerCase() } }).then((result) => {
-        if (!!result?.data?.user?.id) {
-          const { id, refNumber, referral } = result?.data?.user;
-          dispatch(updateUser({ id, refNumber, referral }));
-        }
-      });
+      initUserInfo(account);
     }
   }, [account]);
 

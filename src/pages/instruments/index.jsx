@@ -6,37 +6,27 @@ import { PROGRAM_MAX_LEVELS, PROGRAM_NAMES } from '../../helpers/constants';
 import { useWeb3React } from '@web3-react/core';
 import Lottie from 'lottie-react';
 import loadingQornexAnimation from '../../animations/loadingQornex.json';
-
-import { GET_MATRIX_DATA } from '../../helpers/graphRequests';
-import { useLazyQuery } from '@apollo/client';
+import { useSelector } from 'react-redux';
+import { getMatrixB } from '../../store/matrixBSlice/selectors';
 
 export const Instrument = () => {
   const { account } = useWeb3React();
+  const matrixInfo = useSelector(getMatrixB);
 
-  useEffect(() => {
-    if (account) {
-      callRequest({ variables: { user: account.toLocaleLowerCase() } });
-    }
-  }, [account]);
-
-  const [callRequest, { called, loading, data }] = useLazyQuery(
-    GET_MATRIX_DATA,
-    { variables: { user: null } }
-  );
-
-  const allActiveLvls =
-    !!data?.user?.levels &&
-    data?.user?.levels.filter((item) => {
-      if (Number(item?.expiredAt) !== 0) {
-        return item;
-      }
-    });
+  const allActiveLvls = useMemo(() => {
+    return !!matrixInfo?.levels &&
+      matrixInfo?.levels.filter((item) => {
+        if (Number(item?.expiredAt) !== 0) {
+          return item;
+        }
+      });
+  }, [matrixInfo]);
 
   const nextLvlToActivate =
     allActiveLvls.length < PROGRAM_MAX_LEVELS?.[PROGRAM_NAMES.MATRIX_B] ? allActiveLvls.length + 1 : null;
 
   const renderContent = useMemo(() => {
-    if (loading || !called) {
+    if (matrixInfo?.loading) {
       return (
         <div className="flex items-center justify-center h-full w-full">
           <Lottie className="h-[150px]" animationData={loadingQornexAnimation} loop={true} />
@@ -45,7 +35,7 @@ export const Instrument = () => {
     } else {
       return (
         <>
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start rounded-large border-[1px] border-white-100">
             {!!allActiveLvls &&
               allActiveLvls?.map((item, itemIndex) => (
                 <ActiveLvl key={itemIndex} {...item} matrixs={item.matrixs[itemIndex]} />
@@ -56,7 +46,7 @@ export const Instrument = () => {
         </>
       );
     }
-  }, [loading, called]);
+  }, [allActiveLvls, matrixInfo]);
 
   return (
     <BaseLayout>

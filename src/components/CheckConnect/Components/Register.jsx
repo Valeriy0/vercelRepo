@@ -3,7 +3,7 @@ import { BuyLevelButton } from '../../BuyLevelButton';
 import { useCallTransaction } from '../../../helpers/hooks/useCallTransaction';
 import { updateUser } from '../../../store/userSlice';
 import { useLazyQuery } from '@apollo/client';
-import { GET_USER_DATA } from '../../../helpers/graphRequests';
+import { GET_USER_DATA, GET_MATRIX_DATA } from '../../../helpers/graphRequests';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../../../store/userSlice/selectors';
 import { useWeb3React } from '@web3-react/core';
@@ -12,24 +12,34 @@ export const Register = ({ uplineKey }) => {
   const { onCallTransaction, transactionInfo } = useCallTransaction();
   const dispatch = useDispatch();
   const { account } = useWeb3React();
-  const [callRequest, { called, loading, data }] = useLazyQuery(
-    GET_USER_DATA,
-    { variables: { user: null } }
-  );
-
-  console.log(transactionInfo);
+  const [callRequest] = useLazyQuery(GET_USER_DATA, { variables: { user: null }, fetchPolicy: "cache-and-network"  });
+  const [callRequestMatrix] = useLazyQuery(GET_MATRIX_DATA, { variables: { user: null }, fetchPolicy: "cache-and-network" });
 
   useEffect(() => {
-    if (transactionInfo?.isSuccess) {
+    if (transactionInfo?.isSuccess && account) {
+      callRequestMatrix({ variables: { user: account.toLocaleLowerCase() } }).then((result) => {
+        if (!!result?.data?.user?.levels) {
+          dispatch(
+            updateMatrixB({
+              loading: result?.loading,
+              called: result?.called,
+              levels: result?.data?.user?.levels,
+            }),
+          );
+          onClose();
+        }
+      });
       callRequest({ variables: { user: account.toLocaleLowerCase() } }).then((result) => {
         if (!!result?.data?.user?.id) {
-          console.log(result);
+          console.log(result, 'USERdATA');
           const { id, refNumber, referral } = result?.data?.user;
           dispatch(updateUser({ id, refNumber, referral }));
         }
       });
     }
-  }, [transactionInfo]);
+  }, [transactionInfo, account]);
+
+  console.log('REGISTER COMP')
 
   return (
     <div className="flex flex-col w-full max-w-[460px] text-white">

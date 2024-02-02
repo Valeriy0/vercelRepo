@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Dashboard } from './pages/dashboard';
-import { Instrument } from './pages/instrument';
+import { Instrument } from './pages/instruments';
 
 export const RoutesFind = () => {
   return (
@@ -9,7 +9,7 @@ export const RoutesFind = () => {
       <Routes>
         {/* <Route path="" component={Dashboard} /> */}
         <Route path="/" element={<Dashboard />} />
-        <Route path="/instrument" element={<Instrument />} />
+        <Route path="/instruments" element={<Instrument />} />
       </Routes>
     </Router>
   );

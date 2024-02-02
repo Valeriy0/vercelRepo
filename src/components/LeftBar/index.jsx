@@ -18,10 +18,7 @@ export const LeftBar = () => {
   };
 
   return (
-    <div
-      style={shadowBg}
-      className="flex flex-col justify-between items-end left_bar_size bg-white-50 h-screen px-6 pt-10 pb-9 sm:hidden sticky top-0 "
-    >
+    <div className="flex flex-col justify-between items-end left_bar_size h-screen px-6 pt-10 pb-9 sm:hidden sticky top-0 ">
       <div className="z-[10] flex flex-col items-start space-y-11 w-[180px] ">
         <img className="h-[40px] max-w-full" src="/images/header/logo.png" />
         <MenuButtons />
@@ -30,7 +27,6 @@ export const LeftBar = () => {
         <img src="/icons/leftbar/logOutIcon.svg" />
         <span className="text-[#747474]">Log out</span>
       </button>
-      <img className="absolute right-0 bottom-0" src="/images/leftBar/bottomShadow.png" />
     </div>
   );
 };

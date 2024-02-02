@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getProfile } from './asyncActions';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -13,19 +12,6 @@ export const userSlice = createSlice({
     clearUser(state) {
       state.user = {};
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getProfile.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload, isLoading: false };
-      })
-      .addCase(getProfile.pending, (state, action) => {
-        // Add user to the state array
-        state.user = { ...state.user, ...action.payload, isLoading: true };
-      })
-      .addCase(getProfile.rejected, (state, action) => {
-        state.user = { ...action.payload, isLoading: false };
-      });
   },
 });
 

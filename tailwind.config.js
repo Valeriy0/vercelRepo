@@ -52,11 +52,15 @@ module.exports = {
         lightGray: 'rgba(255, 255, 255, 0.07)',
         lightGreen: '#DAE854',
         'white-10': 'rgba(255, 255, 255, 0.01)',
+        'white-30': 'rgba(255, 255, 255, 0.03)',
         'white-50': 'rgba(255, 255, 255, 0.05)',
         'white-70': 'rgba(255, 255, 255, 0.07)',
         'white-100': 'rgba(255, 255, 255, 0.1)',
+        'white-300': 'rgba(255, 255, 255, 0.3)',
         'white-400': 'rgba(255, 255, 255, 0.4)',
         'white-500': 'rgba(255, 255, 255, 0.5)',
+        'mobMenuButton': 'rgba(40, 40, 40, 0.5)',
+
       },
       fontFamily: {
         sans: ['"poppins"', ...defaultTheme.fontFamily.sans],

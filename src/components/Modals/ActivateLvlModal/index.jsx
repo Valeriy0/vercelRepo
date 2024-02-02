@@ -4,14 +4,34 @@ import { PROGRAM_EXPIRED, PROGRAM_NAMES } from '../../../helpers/constants';
 import { AnimatedCounter } from 'components/AnimatedCounter';
 import { BuyLevelButton } from '../../BuyLevelButton';
 import { useCallTransaction } from '../../../helpers/hooks/useCallTransaction';
+import { useDispatch } from 'react-redux';
+import { updateMatrixB } from '../../../store/matrixBSlice';
+import { useLazyQuery } from '@apollo/client';
+import { GET_MATRIX_DATA } from '../../../helpers/graphRequests';
+import { useWeb3React } from '@web3-react/core';
 
 export const ActivateLvlModal = ({ openedModal, onClose, level }) => {
   const [count, setCount] = useState(1);
+  const { account } = useWeb3React();
+  const dispatch = useDispatch();
   const { onCallTransaction, transactionInfo } = useCallTransaction();
+  const [callRequestMatrix] = useLazyQuery(GET_MATRIX_DATA, { variables: { user: null }, fetchPolicy: "network-only" });
 
   useEffect(() => {
-    if (transactionInfo?.isSuccess) {
-      console.log('upgraded');
+    if (transactionInfo?.isSuccess && account) {
+      callRequestMatrix({ variables: { user: account.toLocaleLowerCase() } }).then((result) => {
+        if (!!result?.data?.user?.levels) {
+          console.log(result?.data?.user?.levels, 'data after buy');
+          dispatch(
+            updateMatrixB({
+              loading: result?.loading,
+              called: result?.called,
+              levels: result?.data?.user?.levels,
+            }),
+          );
+          onClose();
+        }
+      });
     }
   }, [transactionInfo]);
 

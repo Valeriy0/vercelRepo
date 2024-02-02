@@ -11,10 +11,13 @@ export const MenuButtons = () => {
         return (
           <NavLink
             to={item?.href}
-            className={`${isActive && 'bg-primary-500 w-full py-3.5 rounded-2xl'} py-3.5`}
+            className={`${isActive && 'bg-white-70 hover:bg-white-70'} hover:bg-white-30 w-full py-3.5 px-4 rounded-2xl`}
             key={itemIndex}
           >
-            <span className={`ml-5 text-base ${isActive ? 'text-black' : 'text-white'}`}>{item?.title}</span>
+          <div className="flex items-center space-x-3 ">
+            <img src={isActive ? item?.activeIcon : item?.icon}/> 
+            <span className={` text-base ${isActive ? 'text-white' : 'text-white-300'}`}>{item?.title}</span>
+          </div>
           </NavLink>
         );
       })}

@@ -7,6 +7,7 @@ import { CONTRACT_NAMES, PROGRAM_NAMES, PROGRAM_PRICES, SERVICE_FEE } from 'help
 import { useApproveWithChecks } from 'helpers/hooks/useApproveWithChecks';
 import { useRegistration } from '../../helpers/hooks/useRegistration';
 import { useUpgradeLvl } from '../../helpers/hooks/useUpgradeLvl';
+import { useApolloClient } from '@apollo/client';
 
 const getChecksCallbacks = (web3Props, getContract, level = 1, uplineKey = null) => {
   const contractType = CONTRACT_NAMES.MATRIX_B;
@@ -37,9 +38,16 @@ const getChecksCallbacks = (web3Props, getContract, level = 1, uplineKey = null)
   };
 };
 
-export const BuyLevelButton = ({ onCallTransaction, text = 'Activate', buttonType = 'base', count = 1, level = 1, uplineKey = null }) => {
+export const BuyLevelButton = ({
+  onCallTransaction,
+  text = 'Activate',
+  buttonType = 'base',
+  count = 1,
+  level = 1,
+  uplineKey = null,
+}) => {
   const web3Props = useWeb3React();
-
+  const client = useApolloClient();
   const { account, active, chainId } = web3Props;
   const { getContract } = useGetContract();
   const { registrationRefNumber } = useRegistration();
@@ -51,6 +59,7 @@ export const BuyLevelButton = ({ onCallTransaction, text = 'Activate', buttonTyp
   const isLoadingAny = Object.values(statuses).some((status) => status === STATUSES_ENUM.WAIT);
 
   useEffect(() => {
+    client.resetStore();
     callChecks();
   }, [active, account, chainId, count]);
 
@@ -59,7 +68,7 @@ export const BuyLevelButton = ({ onCallTransaction, text = 'Activate', buttonTyp
       if (level === 1) {
         registrationRefNumber(uplineKey).then((result) => {
           onCallTransaction(result);
-        });;
+        });
       } else {
         upgradeLvl(level).then((result) => {
           onCallTransaction(result);

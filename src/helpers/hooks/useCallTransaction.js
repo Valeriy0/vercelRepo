@@ -29,7 +29,7 @@ export const useCallTransaction = () => {
           isError: false,
           isWaiting: false,
           hash: waitResult.transactionHash,
-        }))
+        }));
       }
     } catch (e) {
       setTransactionInfo({ isSuccess: false, isError: false, isWaiting: false, data: null });

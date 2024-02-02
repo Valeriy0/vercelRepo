@@ -13,7 +13,16 @@ export const PriceListModal = ({ openedModal, handleCloseModal, nextLvl, activeL
             const isReadyToActivate = itemIndex + 1 === nextLvl;
             const isActive = itemIndex + 1 < nextLvl;
             const activeLvlInfo = isActive ? activeLvls[itemIndex] : null;
-            return <TableItem activeLvlInfo={activeLvlInfo} price={item} lvl={itemIndex+1} isActive={isActive} isReadyToActivate={isReadyToActivate} key={itemIndex} />;
+            return (
+              <TableItem
+                activeLvlInfo={activeLvlInfo}
+                price={item}
+                lvl={itemIndex + 1}
+                isActive={isActive}
+                isReadyToActivate={isReadyToActivate}
+                key={itemIndex}
+              />
+            );
           })}
         </div>
       </div>

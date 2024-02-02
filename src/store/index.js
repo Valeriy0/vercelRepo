@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './userSlice';
+import { matrixBReducer } from './matrixBSlice';
 
 const reducer = combineReducers({
   profile: userReducer,
+  matrix: matrixBReducer,
 });
 
 const initializeStore = (initialState) =>

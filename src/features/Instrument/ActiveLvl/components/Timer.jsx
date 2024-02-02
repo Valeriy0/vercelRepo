@@ -3,7 +3,6 @@ import Countdown from 'react-countdown';
 import { fromUnixTime } from 'date-fns';
 
 export const Timer = ({ time, onComplete, isCompleted }) => {
-
   const renderer = useCallback(({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       return null;
