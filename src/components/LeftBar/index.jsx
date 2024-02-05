@@ -24,7 +24,7 @@ export const LeftBar = () => {
         <MenuButtons />
       </div>
       <button onClick={logout} className="z-[10] flex space-x-6 w-[180px]">
-        <img src="/icons/leftbar/logOutIcon.svg" />
+        <img src="/icons/leftBar/logOutIcon.svg" />
         <span className="text-[#747474]">Log out</span>
       </button>
     </div>

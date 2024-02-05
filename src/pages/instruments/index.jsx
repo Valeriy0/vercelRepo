@@ -25,6 +25,8 @@ export const Instrument = () => {
   const nextLvlToActivate =
     allActiveLvls.length < PROGRAM_MAX_LEVELS?.[PROGRAM_NAMES.MATRIX_B] ? allActiveLvls.length + 1 : null;
 
+    console.log(nextLvlToActivate);
+
   const renderContent = useMemo(() => {
     if (matrixInfo?.loading) {
       return (
@@ -42,7 +44,7 @@ export const Instrument = () => {
               ))}
             {nextLvlToActivate && <LevelActivating nextLvl={nextLvlToActivate} />}
           </div>
-          <NonActiveLvlList activeLvls={allActiveLvls} nextLvl={nextLvlToActivate} />
+          {nextLvlToActivate && <NonActiveLvlList activeLvls={allActiveLvls} nextLvl={nextLvlToActivate} />}
         </>
       );
     }
@@ -57,7 +59,7 @@ export const Instrument = () => {
         </div>
         {renderContent}
         <img className="absolute right-0 z-[-1] top-0" src="/images/instrument/main/purpleShadow.png"/>
-          <img className="absolute left-[8%]  z-[-1] top-0" src="/images/instrument/main/yellowShadow.png"/>
+        <img className="absolute left-[8%]  z-[-1] top-0" src="/images/instrument/main/yellowShadow.png"/>
       </BaseLayout>
   );
 };
