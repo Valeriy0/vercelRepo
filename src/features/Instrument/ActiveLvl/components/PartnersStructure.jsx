@@ -4,34 +4,26 @@ import { motion } from 'framer-motion';
 export const PartnersStructure = ({ matrixs }) => {
   const checkStatusPartners = (item, index) => {
     if (item) {
-      switch (item?.status) {
-        case 'direct':
-          return {
-            shadow: 'bg-[#EBFF29]',
-            border: 'yellow_border_color',
-            icon: 'partnerIcon',
-            isActive: true,
-          };
-        // case 'notActive':
-        //   return {
-        //     border: 'purple_border_color',
-        //     icon: 'recycleIcon',
-        //     isActive: false,
-        //   };
-        default:
-          return {
-            border: 'purple_border_color',
-            icon: 'recycleIcon',
-            isActive: false,
-          };
-      }
-    } else {
       if (index > 3) {
         return {
           shadow: 'purple_circle_bg',
           border: 'purple_border_color',
           icon: 'recycleIcon',
           isActive: true,
+        };
+      }
+      return {
+        border: 'yellow_border_color',
+        icon: 'partnerIcon',
+        isActive: true,
+      };
+    } else {
+      if (index > 3) {
+        return {
+          shadow: 'purple_circle_bg',
+          border: 'purple_border_color',
+          icon: 'recycleIcon',
+          isActive: false,
         };
       }
       return {
