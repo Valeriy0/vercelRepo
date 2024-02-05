@@ -27,8 +27,6 @@ export const Instrument = () => {
   const nextLvlToActivate =
     allActiveLvls.length < PROGRAM_MAX_LEVELS?.[PROGRAM_NAMES.MATRIX_B] ? allActiveLvls.length + 1 : null;
 
-  console.log(nextLvlToActivate);
-
   const renderContent = useMemo(() => {
     if (matrixInfo?.loading) {
       return (
