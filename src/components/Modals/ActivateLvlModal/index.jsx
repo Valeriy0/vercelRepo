@@ -17,7 +17,7 @@ export const ActivateLvlModal = ({ openedModal, onClose, level }) => {
   const { account } = useWeb3React();
   const dispatch = useDispatch();
   const { onCallTransaction, transactionInfo, resetTransactionInfo } = useCallTransaction();
-  const [callRequestMatrix] = useLazyQuery(GET_MATRIX_DATA, { variables: { user: null }, fetchPolicy: 'network-only' });
+  const [callRequestMatrix] = useLazyQuery(GET_MATRIX_DATA, { variables: { user: null }, fetchPolicy: 'no-cache' });
 
   useEffect(() => {
     if (transactionInfo?.isSuccess && account) {
@@ -126,7 +126,11 @@ export const ActivateLvlModal = ({ openedModal, onClose, level }) => {
 
   return (
     <Modal isOpened={openedModal} onClose={closeModal}>
-      <div className={`flex p-8 flex-col space-y-5 shadow-item backdrop-blur-[100px] h-[460px] sm:h-[512px] w-[376px] sm:w-full ${statusStyle()?.bg} items-start justify-start rounded-3xl space-y-11 sm:w-full sm:p-0 sm:px-4 sm:rounded-none sm:rounded-t-3xl sm:justify-end sm:pb-[121px] sm:space-y-10`}>
+      <div
+        className={`flex p-8 flex-col space-y-5 shadow-item backdrop-blur-[100px] h-[460px] sm:h-[512px] w-[376px] sm:w-full ${
+          statusStyle()?.bg
+        } items-start justify-start rounded-3xl space-y-11 sm:w-full sm:p-0 sm:px-4 sm:rounded-none sm:rounded-t-3xl sm:justify-end sm:pb-[121px] sm:space-y-10`}
+      >
         <div className="flex absolute top-[-50px] left-1/2 -translate-x-1/2 sm:top-[-30px]">
           <img className="" src={statusStyle()?.icon} />
           <span className="whitespace-nowrap absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[27.5px] poppins text-black font-medium">

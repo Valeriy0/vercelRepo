@@ -15,7 +15,7 @@ export const Register = ({ uplineData }) => {
   const { account } = useWeb3React();
   const [upline, setUpline] = useState(uplineData ? uplineData : '');
   const [openedUplineInput, setOpenedUplineInput] = useState(false);
-  const [callRequest] = useLazyQuery(GET_USER_DATA, { variables: { user: null }, fetchPolicy: 'cache-and-network' });
+  const [callRequest] = useLazyQuery(GET_USER_DATA, { variables: { user: null }, fetchPolicy: 'no-cache' });
 
   useEffect(() => {
     if (transactionInfo?.isSuccess && account) {

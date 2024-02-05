@@ -14,18 +14,20 @@ export const Instrument = () => {
   const matrixInfo = useSelector(getMatrixB);
 
   const allActiveLvls = useMemo(() => {
-    return !!matrixInfo?.levels &&
+    return (
+      !!matrixInfo?.levels &&
       matrixInfo?.levels.filter((item) => {
         if (Number(item?.expiredAt) !== 0) {
           return item;
         }
-      });
+      })
+    );
   }, [matrixInfo]);
 
   const nextLvlToActivate =
     allActiveLvls.length < PROGRAM_MAX_LEVELS?.[PROGRAM_NAMES.MATRIX_B] ? allActiveLvls.length + 1 : null;
 
-    console.log(nextLvlToActivate);
+  console.log(nextLvlToActivate);
 
   const renderContent = useMemo(() => {
     if (matrixInfo?.loading) {
@@ -51,15 +53,15 @@ export const Instrument = () => {
   }, [allActiveLvls, matrixInfo]);
 
   return (
-      <BaseLayout>
-        <div className="flex items-center space-x-6 pb-6 relative sm:flex-col sm:space-x-0 sm:space-y-4 sm:items-start">
-          <BreadCrumbs title="Instrument">
-            <LevelsStatus />
-          </BreadCrumbs>
-        </div>
-        {renderContent}
-        <img className="absolute right-0 z-[-1] top-0" src="/images/instrument/main/purpleShadow.png"/>
-        <img className="absolute left-[8%]  z-[-1] top-0" src="/images/instrument/main/yellowShadow.png"/>
-      </BaseLayout>
+    <BaseLayout>
+      <div className="flex items-center space-x-6 pb-6 relative sm:flex-col sm:space-x-0 sm:space-y-4 sm:items-start">
+        <BreadCrumbs title="Instrument">
+          <LevelsStatus />
+        </BreadCrumbs>
+      </div>
+      {renderContent}
+      <img className="absolute right-0 z-[-1] top-0" src="/images/instrument/main/purpleShadow.png" />
+      <img className="absolute left-[8%]  z-[-1] top-0" src="/images/instrument/main/yellowShadow.png" />
+    </BaseLayout>
   );
 };
