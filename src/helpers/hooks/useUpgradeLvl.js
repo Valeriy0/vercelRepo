@@ -22,7 +22,6 @@ export const useUpgradeLvl = () => {
         const result = await contract.buyNewLevel(level, {
           gasLimit: DEFAULT_GAS_LIMIT,
         });
-        console.log(result, 'upgrade res');
         return result;
       } catch (e) {
         console.log(e);

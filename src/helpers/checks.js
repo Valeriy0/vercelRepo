@@ -16,7 +16,7 @@ export const checkBalance = async ({ account, getContract, provider, frgxMinPric
       const contract = await getContract(ContractNames.FRGX);
       let balanceFrgx = parseInt(await contract.balanceOf(account)) / 1e18;
 
-      if (isDev || (balanceFrgx >= Number(frgxMinPrice))) {
+      if (isDev || balanceFrgx >= Number(frgxMinPrice)) {
         return Promise.resolve();
       } else {
         return Promise.reject();
@@ -26,8 +26,6 @@ export const checkBalance = async ({ account, getContract, provider, frgxMinPric
     return Promise.reject();
   }
 };
-
-
 
 export const checkApprove = async ({ getContract, account, name = 'frgx', price }) => {
   const MIN_BALANCE = parseInt(MAX_VALUE, 16);
@@ -43,7 +41,6 @@ export const checkApprove = async ({ getContract, account, name = 'frgx', price 
       return Promise.reject();
     }
   } catch (e) {
-    console.log('test', e)
     return Promise.reject(e);
   }
 };

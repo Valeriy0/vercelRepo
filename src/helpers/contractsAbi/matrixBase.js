@@ -395,7 +395,7 @@ export const contractMatrixBaseAbi = [
   },
   {
     inputs: [],
-    name: 'leadPool',
+    name: 'leaderPoolAddress',
     outputs: [
       {
         internalType: 'address',
@@ -418,27 +418,12 @@ export const contractMatrixBaseAbi = [
     outputs: [
       {
         internalType: 'uint256',
-        name: 'activationTime',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
         name: 'addedDuration',
         type: 'uint256',
       },
       {
         internalType: 'uint256',
         name: 'price',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'presaleFee',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'saleFee',
         type: 'uint256',
       },
     ],
@@ -537,6 +522,19 @@ export const contractMatrixBaseAbi = [
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'startTime',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [
       {
         internalType: 'address',
@@ -587,8 +585,13 @@ export const contractMatrixBaseAbi = [
       },
       {
         internalType: 'address',
-        name: '_leadPool',
+        name: '_leaderPoolAddress',
         type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: '_startTime',
+        type: 'uint256',
       },
     ],
     name: 'init',
@@ -612,50 +615,14 @@ export const contractMatrixBaseAbi = [
   {
     inputs: [
       {
-        internalType: 'uint8',
-        name: 'level',
-        type: 'uint8',
-      },
-    ],
-    name: 'getLevelData',
-    outputs: [
-      {
         internalType: 'uint256',
-        name: 'presaleTime',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'presalePrice',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'startTime',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'startPrice',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'addedDuration',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'presaleFee',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'saleFee',
+        name: '_startTime',
         type: 'uint256',
       },
     ],
-    stateMutability: 'view',
+    name: 'changeStartTime',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {

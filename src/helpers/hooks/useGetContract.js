@@ -9,6 +9,8 @@ export const useGetContract = () => {
   const types = {
     [ContractNames?.MATRIX_B]: [config.contractMatrixBase, config.contractMatrixBaseAbi],
     [ContractNames?.FRGX]: [config.contractFrgx, config.contractFrgxAbi],
+    [ContractNames?.FARMING_POOL]: [config.contractFarmingPool, config.contractFarmingPoolAbi],
+    [ContractNames?.STAKING_POOL]: [config.contractStakingPool, config.contractStakingPoolAbi],
   };
 
   const getContract = (type) => {

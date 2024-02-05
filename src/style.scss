@@ -111,24 +111,28 @@ html {
   background-color: #0B0B0B;
 }
 
-.purple-gradient-wrapper {
-  background: linear-gradient(180deg, rgba(172, 112, 239, 0.10) 0%, rgba(176, 114, 245, 0.05) 100%)
+.instrument-main-bg {
+  background: linear-gradient(100.7deg, rgba(27, 27, 27, 0.7) 0%, rgba(12, 12, 12, 0.7) 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));  
+  box-shadow: 0px 50px 30px -30px rgba(0, 0, 0, 0.35);
 }
 
-.instrument-blocks-bg {
-  background:  linear-gradient(180deg, #1D1D1E 0%, rgba(29, 29, 30, 0.00) 125.15%);
+.instrument-nonactivate-bg {
+  background: linear-gradient(180deg, #171717 0%, #0B0B0B 100%);  
 }
 
 .absolute_blocks_gradient {
-  background: linear-gradient(180deg, rgba(29, 29, 30, 0.50) 0%, rgba(29, 29, 30, 0.00) 100%);
+  background: linear-gradient(180deg, rgba(23, 23, 23, 0.5) 0%, rgba(13, 13, 13, 0.5) 100%);  
+  box-shadow: 0px 50px 30px -30px rgba(0, 0, 0, 0.35);
 }
 
 .second_absolute_blocks_gradient {
-  background: linear-gradient(180deg, rgba(29, 29, 30, 0.30) 0%, rgba(29, 29, 30, 0.00) 100%);
+  background: linear-gradient(180deg, rgba(23, 23, 23, 0.3) 0%, rgba(13, 13, 13, 0.3) 100%);
+  box-shadow: 0px 50px 30px -30px rgba(0, 0, 0, 0.35);
 }
 
 .partners-block-bg {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: 0px 25px 40px 0px rgba(0, 0, 0, 0.1); box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);  
 }
 
 .level-avtivating-block {
@@ -180,8 +184,15 @@ html {
   display: none;
 }
 
-.levelActivateModalBg {
-  background: radial-gradient(182.94% 107.94% at 50% -7.94%, rgba(235, 255, 41, 0.30) 0%, rgba(0, 0, 0, 0.00) 66.39%), rgba(255, 255, 255, 0.05);
+.activateModalBg {
+  background: radial-gradient(182.94% 107.94% at 50% -7.94%, rgba(235, 255, 41, 0.30) 0%, rgba(0, 0, 0, 0.00) 66.39%), linear-gradient(98deg, rgba(40, 40, 40, 0.50) 6.79%, rgba(31, 31, 31, 0.25) 100%), rgba(0, 0, 0, 0.60);
+  &_success {
+    background: radial-gradient(182.94% 107.94% at 50% -7.94%, rgba(73, 215, 88, 0.30) 0%, rgba(0, 0, 0, 0.00) 66.39%), linear-gradient(98deg, rgba(40, 40, 40, 0.50) 6.79%, rgba(31, 31, 31, 0.25) 100%), rgba(0, 0, 0, 0.60);
+  }
+  &_error {
+    background: radial-gradient(182.94% 107.94% at 50% -7.94%, rgba(236, 51, 106, 0.30) 0%, rgba(0, 0, 0, 0.00) 66.39%), linear-gradient(98deg, rgba(40, 40, 40, 0.50) 6.79%, rgba(31, 31, 31, 0.25) 100%), rgba(0, 0, 0, 0.60);
+  }
+
 }
 
 .ffff {
@@ -212,4 +223,13 @@ html {
 
 .mobMenu-gray-shadow {
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.user-info-bg {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), linear-gradient(97.88deg, rgba(40, 40, 40, 0.5) 6.79%, rgba(31, 31, 31, 0.25) 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+.overview-bg {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), linear-gradient(97.88deg, rgba(40, 40, 40, 0.5) 6.79%, rgba(31, 31, 31, 0.25) 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 }

@@ -35,7 +35,7 @@ export const Instrument = () => {
     } else {
       return (
         <>
-          <div className="flex flex-col items-start rounded-large border-[1px] border-white-100">
+          <div className="flex flex-col items-start rounded-large sm:rounded-3xl instrument-main-bg border-[1px] border-white-100">
             {!!allActiveLvls &&
               allActiveLvls?.map((item, itemIndex) => (
                 <ActiveLvl key={itemIndex} {...item} matrixs={item.matrixs[itemIndex]} />
@@ -49,13 +49,15 @@ export const Instrument = () => {
   }, [allActiveLvls, matrixInfo]);
 
   return (
-    <BaseLayout>
-      <div className="flex items-center space-x-6 pb-6 sm:flex-col sm:space-x-0 sm:space-y-4 sm:items-start">
-        <BreadCrumbs title="Instrument">
-          <LevelsStatus />
-        </BreadCrumbs>
-      </div>
-      {renderContent}
-    </BaseLayout>
+      <BaseLayout>
+        <div className="flex items-center space-x-6 pb-6 relative sm:flex-col sm:space-x-0 sm:space-y-4 sm:items-start">
+          <BreadCrumbs title="Instrument">
+            <LevelsStatus />
+          </BreadCrumbs>
+        </div>
+        {renderContent}
+        <img className="absolute right-0 z-[-1] top-0" src="/images/instrument/main/purpleShadow.png"/>
+          <img className="absolute left-[8%]  z-[-1] top-0" src="/images/instrument/main/yellowShadow.png"/>
+      </BaseLayout>
   );
 };

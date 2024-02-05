@@ -13,7 +13,6 @@ export const useBalance = () => {
     try {
       const contract = await getContract(CONTRACT_NAMES.FRGX);
       const resultBalanceFRGX = await contract?.balanceOf(account);
-      console.log(contract, resultBalanceFRGX, account);
       const balanceFrgx = parseInt(resultBalanceFRGX) / 1e18;
       setIsLoadingBalance(false);
       setBalance(balanceFrgx.toFixed(0));

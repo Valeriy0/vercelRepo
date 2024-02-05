@@ -5,7 +5,7 @@ export const menuList = [
     icon: '/icons/leftBar/menuIcons/grayIcons/dashboard.svg',
     activeIcon: '/icons/leftBar/menuIcons/yellowIcons/dashboard.svg',
     mobIcon: '/icons/mobMenu/menu.svg',
-    bg: 'bg-primary-500 rounded-[20px] mobMenu-yellow-shadow h-[60px] w-[60px]',
+    bg: '!bg-primary-500 !rounded-[20px] !mobMenu-yellow-shadow !h-[60px] !w-[60px]',
     key: '',
   },
   {
@@ -14,7 +14,6 @@ export const menuList = [
     icon: '/icons/leftBar/menuIcons/grayIcons/instruments.svg',
     activeIcon: '/icons/leftBar/menuIcons/yellowIcons/instruments.svg',
     mobIcon: '/icons/mobMenu/instruments.svg',
-    bg: 'bg-mobMenuButton rounded-2xl w-12 h-12',
     key: 'instruments',
   },
   {
@@ -23,7 +22,6 @@ export const menuList = [
     icon: '/icons/leftBar/menuIcons/grayIcons/staking.svg',
     activeIcon: '/icons/leftBar/menuIcons/yellowIcons/staking.svg',
     mobIcon: '/icons/mobMenu/staking.svg',
-    bg: 'bg-mobMenuButton rounded-2xl w-12 h-12',
     key: 'staking',
   },
   {
@@ -32,16 +30,14 @@ export const menuList = [
     icon: '/icons/leftBar/menuIcons/grayIcons/farm.svg',
     activeIcon: '/icons/leftBar/menuIcons/yellowIcons/farm.svg',
     mobIcon: '/icons/mobMenu/farm.svg',
-    bg: 'bg-mobMenuButton rounded-2xl w-12 h-12',
     key: 'farm',
   },
   {
     title: 'Settings',
-    href: '',
+    href: '/settings',
     icon: '/icons/leftBar/menuIcons/grayIcons/settings.svg',
     activeIcon: '/icons/leftBar/menuIcons/yellowIcons/settings.svg',
     mobIcon: '/icons/mobMenu/dashboard.svg',
-    bg: 'bg-mobMenuButton rounded-2xl w-12 h-12',
     key: 'settings',
   },
 ];

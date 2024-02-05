@@ -8,7 +8,7 @@ export const LevelActivating = ({ nextLvl = 1 }) => {
 
   return (
     <>
-      <div className="flex bg-[#1D1D1E] w-full items-center justify-center h-[190px] rounded-large sm:rounded-3xl sm:h-fit sm:pt-6 sm:pb-[26px] sm:px-3 level-activating-bg">
+      <div className="flex bg-[#1D1D1E] w-full items-center justify-center py-[30px] rounded-large sm:rounded-3xl sm:h-fit sm:pt-6 sm:pb-[26px] sm:px-3 level-activating-bg">
         <div className="flex flex-col space-y-3 sm:w-full">
           <div className="flex items-center justify-center bg-lightGray rounded-2xl h-[56px]  space-x-2 shadow-item sm:w-full sm:backdrop-blur-large">
             <span className="text-base text-white poppins font-medium">1X</span>

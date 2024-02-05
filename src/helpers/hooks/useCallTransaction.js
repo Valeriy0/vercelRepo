@@ -1,12 +1,18 @@
 import { useState } from 'react';
 
+const initTransactionInfo = {
+  hash: null,
+  isWaiting: false,
+  isError: false,
+  isSuccess: false,
+};
+
 export const useCallTransaction = () => {
-  const [transactionInfo, setTransactionInfo] = useState({
-    hash: null,
-    isWaiting: false,
-    isError: false,
-    isSuccess: false,
-  });
+  const [transactionInfo, setTransactionInfo] = useState(initTransactionInfo);
+
+  const resetTransactionInfo = () => {
+    setTransactionInfo(initTransactionInfo);
+  };
 
   const onCallTransaction = async (result) => {
     try {
@@ -40,5 +46,6 @@ export const useCallTransaction = () => {
     transactionInfo,
     onCallTransaction,
     setTransactionInfo,
+    resetTransactionInfo,
   };
 };

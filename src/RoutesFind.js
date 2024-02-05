@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Dashboard } from './pages/dashboard';
 import { Instrument } from './pages/instruments';
+import { Settings } from './pages/settings/index.';
 
 export const RoutesFind = () => {
   return (
@@ -10,6 +11,7 @@ export const RoutesFind = () => {
         {/* <Route path="" component={Dashboard} /> */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/instruments" element={<Instrument />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );

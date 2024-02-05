@@ -17,8 +17,8 @@ export const Balance = () => {
       <div className="flex items-start justify-start bg-lightGray rounded-2xl h-[64px] p-3 space-x-3 sm:w-full  ">
         <img src="/icons/dashboard/userInfo/frgx_icon.svg" />
         <div className="flex flex-col">
-          <span className="text-base font-semibold poppins text-white">FRGX</span>
-          <span className="text-sm poppins text-white opacity-50">{isLoadingBalance ? '-' : balance}</span>
+          <span className="text-base font-medium poppins text-white">FRGX</span>
+          <span className="text-sm poppins text-white font-light opacity-50">{isLoadingBalance ? '-' : balance}</span>
         </div>
       </div>
     </div>

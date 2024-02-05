@@ -1,3 +1,52 @@
+import { keccak256 } from '@ethersproject/keccak256';
+import { arrayify } from '@ethersproject/bytes';
+import { _base36To16 } from '@ethersproject/bignumber';
+
+function getChecksumAddress(address) {
+  address = address.toLowerCase();
+
+  const chars = address.substring(2).split('');
+
+  const expanded = new Uint8Array(40);
+  for (let i = 0; i < 40; i++) {
+    expanded[i] = chars[i].charCodeAt(0);
+  }
+
+  const hashed = arrayify(keccak256(expanded));
+
+  for (let i = 0; i < 40; i += 2) {
+    if (hashed[i >> 1] >> 4 >= 8) {
+      chars[i] = chars[i].toUpperCase();
+    }
+    if ((hashed[i >> 1] & 0x0f) >= 8) {
+      chars[i + 1] = chars[i + 1].toUpperCase();
+    }
+  }
+
+  return '0x' + chars.join('');
+}
+
+export function getAddress(address) {
+  let result = null;
+
+  if (address.match(/^(0x)?[0-9a-fA-F]{40}$/)) {
+    // Missing the 0x prefix
+    if (address.substring(0, 2) !== '0x') {
+      address = '0x' + address;
+    }
+
+    result = getChecksumAddress(address);
+  } else if (address.match(/^XE[0-9]{2}[0-9A-Za-z]{30,31}$/)) {
+    result = _base36To16(address.substring(4));
+    while (result.length < 40) {
+      result = '0' + result;
+    }
+    result = getChecksumAddress('0x' + result);
+  }
+
+  return result;
+}
+
 export const shortenAddress = (address, chars = 4) => {
   try {
     return `${address.substring(0, chars + 2)}...${address.substring(42 - chars)}`;

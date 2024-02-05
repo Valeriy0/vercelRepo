@@ -59,8 +59,11 @@ module.exports = {
         'white-300': 'rgba(255, 255, 255, 0.3)',
         'white-400': 'rgba(255, 255, 255, 0.4)',
         'white-500': 'rgba(255, 255, 255, 0.5)',
-        'mobMenuButton': 'rgba(40, 40, 40, 0.5)',
-
+        'white-600': 'rgba(255, 255, 255, 0.6)',
+        'white-700': 'rgba(255, 255, 255, 0.7)',
+        mobMenuButton: 'rgba(40, 40, 40, 0.5)',
+        successGreen: '#49D758',
+        errorPink: '#EC336A',
       },
       fontFamily: {
         sans: ['"poppins"', ...defaultTheme.fontFamily.sans],

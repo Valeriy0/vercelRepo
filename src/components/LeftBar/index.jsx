@@ -18,7 +18,7 @@ export const LeftBar = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-end left_bar_size h-screen px-6 pt-10 pb-9 sm:hidden sticky top-0 ">
+    <div className="flex flex-col justify-between items-end left_bar_size h-screen px-6 pt-10 pb-9 sm:hidden sticky top-0 z-[111] ">
       <div className="z-[10] flex flex-col items-start space-y-11 w-[180px] ">
         <img className="h-[40px] max-w-full" src="/images/header/logo.png" />
         <MenuButtons />

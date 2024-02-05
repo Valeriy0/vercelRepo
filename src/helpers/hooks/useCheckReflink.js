@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { setCookie, parseCookies } from 'nookies';
 
 export const useCheckReflink = () => {
-  const [uplineKey, setUplineKey] = useState(null);
+  const [uplineData, setUplineData] = useState(null);
 
   const checkReflink = () => {
     const refData = new URL(window.location.toString()).searchParams.get('ref');
     if (refData) {
-      setUplineKey(refData);
+      setUplineData(refData);
       setCookie(null, 'qornex_upline', refData, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
@@ -15,13 +15,13 @@ export const useCheckReflink = () => {
     } else {
       const parseUpline = parseCookies()?.['qornex_upline'];
       if (!!parseUpline) {
-        setUplineKey(parseUpline);
+        setUplineData(parseUpline);
       }
     }
   };
 
   return {
-    uplineKey,
+    uplineData,
     checkReflink,
   };
 };

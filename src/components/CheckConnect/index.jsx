@@ -18,10 +18,18 @@ export const CheckConnect = () => {
   const dispatch = useDispatch();
   const { account } = useWeb3React();
   const currentUser = useSelector(getUser);
-  const [callRequest, { called, loading, data }] = useLazyQuery(GET_USER_DATA, { variables: { user: null }, fetchPolicy: "cache-and-network" });
-  const [callRequestMatrix] = useLazyQuery(GET_MATRIX_DATA, { variables: { user: null }, fetchPolicy: "cache-and-network" });
+  const [callRequest, props] = useLazyQuery(GET_USER_DATA, {
+    variables: { user: null },
+    fetchPolicy: 'cache-and-network',
+  });
+  const [callRequestMatrix, propsMatrix] = useLazyQuery(GET_MATRIX_DATA, {
+    variables: { user: null },
+    fetchPolicy: 'cache-and-network',
+  });
+  const { loading, data, called } = props ?? {};
+  const { loadingMatrix, dataMatrix, calledMatrix } = propsMatrix ?? {};
   const isNeedToRegister = account && !data?.user?.id && !loading && called;
-  const { uplineKey, checkReflink } = useCheckReflink();
+  const { uplineData, checkReflink } = useCheckReflink();
 
   useEffect(() => {
     if (isNeedToRegister) {
@@ -31,22 +39,29 @@ export const CheckConnect = () => {
 
   const initUserInfo = (userAddress) => {
     callRequest({ variables: { user: userAddress.toLocaleLowerCase() } }).then((result) => {
+      console.log(result)
       if (!!result?.data?.user?.id) {
         const { id, refNumber, referral } = result?.data?.user;
         dispatch(updateUser({ id, refNumber, referral }));
       }
     });
-    callRequestMatrix({ variables: { user: userAddress.toLocaleLowerCase() } }).then((result) => {
-      if (!!result?.data?.user?.levels) {
-        console.log(result);
-        dispatch(updateMatrixB({
-          loading: result?.loading,
-          called: result?.called,
-          levels: result?.data?.user?.levels,
-        }));
-      }
-    });
   };
+
+  useEffect(() => {
+    if ((currentUser?.id, account)) {
+      callRequestMatrix({ variables: { user: account.toLocaleLowerCase() } }).then((result) => {
+        if (!!result?.data?.user && !!result?.data?.user?.levels) {
+          dispatch(
+            updateMatrixB({
+              loading: result?.loading,
+              called: result?.called,
+              levels: result?.data?.user?.levels,
+            }),
+          );
+        }
+      });
+    }
+  }, [currentUser?.id, account]);
 
   useEffect(() => {
     if (account) {
@@ -69,7 +84,7 @@ export const CheckConnect = () => {
         backgroundRepeat: 'no-repeat',
       };
     }
-    if (!data?.user?.id) {
+    if (!!data && !data?.user?.id) {
       return {
         backgroundImage: 'url(/images/checkConnect/connectWallet.png)',
         backgroundSize: 'cover',
@@ -115,10 +130,10 @@ export const CheckConnect = () => {
       );
     }
     if (isNeedToRegister) {
-      return <Register uplineKey={uplineKey} />;
+      return <Register uplineData={uplineData} />;
     }
     return null;
-  }, [account, data, loading, called, isNeedToRegister, uplineKey]);
+  }, [account, isNeedToRegister, uplineData]);
 
   if (currentUser?.id) {
     return null;
@@ -126,7 +141,7 @@ export const CheckConnect = () => {
   return (
     <div className="flex items-center justify-center absolute top-0 left-0 w-full h-screen bg-[#0B0B0B] z-[99999] overflow-hidden">
       <div style={styleBg} className="w-[41%] h-full" />
-      <div className="z-[10] w-[59%] h-full flex flex-col items-center justify-center p-2.5">
+      <div className="z-[10] w-[59%] sm:w-full h-full flex flex-col items-center justify-center p-2.5">
         {account && (loading || !called) ? (
           <Lottie animationData={loadingQornexAnimation} loop={true} />
         ) : (

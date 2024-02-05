@@ -17,7 +17,7 @@ export const TokenOverview = () => {
       initial="hidden"
       whileInView="visible"
       variants={blockAnimation}
-      className="flex justify-between h-full col-span-2 sm:h-[400px] w-full row-span-3 rounded-3xl purple-gradient-wrapper p-8 shadow-item sm:order-last"
+      className="flex justify-between h-full col-span-2 sm:h-[400px] w-full row-span-3 rounded-3xl overview-bg p-8 shadow-item sm:order-last border-[1px] border-white-100"
     >
       <h3 className="font-semibold text-white">Overview</h3>
       <div className="space-x-2.5 flex items-start">

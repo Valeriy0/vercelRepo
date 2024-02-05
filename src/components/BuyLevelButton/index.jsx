@@ -9,7 +9,7 @@ import { useRegistration } from '../../helpers/hooks/useRegistration';
 import { useUpgradeLvl } from '../../helpers/hooks/useUpgradeLvl';
 import { useApolloClient } from '@apollo/client';
 
-const getChecksCallbacks = (web3Props, getContract, level = 1, uplineKey = null) => {
+const getChecksCallbacks = (web3Props, getContract, level = 1) => {
   const contractType = CONTRACT_NAMES.MATRIX_B;
   const funcProps = { getContract, ...web3Props, contractType };
 
@@ -44,13 +44,14 @@ export const BuyLevelButton = ({
   buttonType = 'base',
   count = 1,
   level = 1,
-  uplineKey = null,
+  uplineData = null,
+  isFirstBuy = false,
 }) => {
   const web3Props = useWeb3React();
   const client = useApolloClient();
   const { account, active, chainId } = web3Props;
   const { getContract } = useGetContract();
-  const { registrationRefNumber } = useRegistration();
+  const { registration } = useRegistration();
   const { upgradeLvl } = useUpgradeLvl();
   const { statuses, callChecks, approveInfo, callApprove } = useApproveWithChecks(
     getChecksCallbacks(web3Props, getContract, level * count),
@@ -65,8 +66,8 @@ export const BuyLevelButton = ({
 
   const handleClickAction = () => {
     if (isSuccessAll) {
-      if (level === 1) {
-        registrationRefNumber(uplineKey).then((result) => {
+      if (level === 1 && isFirstBuy) {
+        registration(uplineData).then((result) => {
           onCallTransaction(result);
         });
       } else {
