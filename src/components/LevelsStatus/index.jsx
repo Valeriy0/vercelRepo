@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getMatrixB } from '../../store/matrixBSlice/selectors';
 
 export const LevelsStatus = () => {
+  const matrixInfo = useSelector(getMatrixB);
   const [isOpened, setIsOpened] = useState(false);
+
   return (
     <div className="flex items-center space-x-2 bg-primary-500 h-[40px] rounded-xl w-fit">
       <button onClick={() => setIsOpened((temp) => !temp)}>

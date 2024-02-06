@@ -14,7 +14,7 @@ export const Reflink = ({ refNumber }) => {
         </button>
         <div className="flex flex-col overflow-hidden">
           <span className="text-base font-semibold text-white poppins">Referral link</span>
-          <span className="text-sm opacity-50 text-white font-light whitespace-nowrap">{refLink}</span>
+          <span className="scroll-hidden overflow-auto text-sm opacity-50 text-white font-light whitespace-nowrap">{refLink}</span>
         </div>
       </div>
       <span className="px-3 py-2 text-white opacity-50 font-light">+ 7 Partners</span>
