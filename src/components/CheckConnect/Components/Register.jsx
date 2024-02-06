@@ -8,14 +8,26 @@ import { useDispatch } from 'react-redux';
 import { getUser } from '../../../store/userSlice/selectors';
 import { useWeb3React } from '@web3-react/core';
 import { Input, TransactionStatuses } from 'components';
+import { useCheckReflink } from '../../../helpers/hooks/useCheckReflink';
 
-export const Register = ({ uplineData }) => {
+export const Register = ({}) => {
   const { onCallTransaction, transactionInfo } = useCallTransaction();
   const dispatch = useDispatch();
   const { account } = useWeb3React();
-  const [upline, setUpline] = useState(uplineData ? uplineData : '');
+  const [upline, setUpline] = useState('');
   const [openedUplineInput, setOpenedUplineInput] = useState(false);
   const [callRequest] = useLazyQuery(GET_USER_DATA, { variables: { user: null }, fetchPolicy: 'no-cache' });
+  const { uplineData, checkReflink } = useCheckReflink();
+
+  useEffect(() => {
+    checkReflink();
+  }, []);
+
+  useEffect(() => {
+    if (uplineData) {
+      setUpline(uplineData);
+    }
+  }, [uplineData]);
 
   useEffect(() => {
     if (transactionInfo?.isSuccess && account) {

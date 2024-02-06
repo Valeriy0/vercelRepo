@@ -11,7 +11,6 @@ import { useLazyQuery } from '@apollo/client';
 import { GET_USER_DATA, GET_MATRIX_DATA } from '../../helpers/graphRequests';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../store/userSlice/selectors';
-import { useCheckReflink } from '../../helpers/hooks/useCheckReflink';
 import { Register } from './Components/Register';
 
 export const CheckConnect = () => {
@@ -29,13 +28,6 @@ export const CheckConnect = () => {
   const { loading, data, called } = props ?? {};
   const { loadingMatrix, dataMatrix, calledMatrix } = propsMatrix ?? {};
   const isNeedToRegister = account && !data?.user?.id && !loading && called;
-  const { uplineData, checkReflink } = useCheckReflink();
-
-  useEffect(() => {
-    if (isNeedToRegister) {
-      checkReflink();
-    }
-  }, [isNeedToRegister]);
 
   const initUserInfo = (userAddress) => {
     callRequest({ variables: { user: userAddress.toLocaleLowerCase() } }).then((result) => {
@@ -130,10 +122,10 @@ export const CheckConnect = () => {
       );
     }
     if (isNeedToRegister) {
-      return <Register uplineData={uplineData} />;
+      return <Register />;
     }
     return null;
-  }, [account, isNeedToRegister, uplineData]);
+  }, [account, isNeedToRegister]);
 
   if (currentUser?.id) {
     return null;
