@@ -195,15 +195,6 @@ html {
 
 }
 
-.ffff {
-  border-radius: 24px;
-  border: 1px solid #292929;
-  background: rgba(255, 255, 255, 0.50);
-  background-blend-mode: overlay;
-  box-shadow: 0px 25px 40px 0px rgba(0, 0, 0, 0.05), 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(100px);
-}
-
 .yellow_border_color {
   background: linear-gradient(150deg,rgba(235, 255, 41, 1), rgba(235, 255, 41, 0.3), rgba(235, 255, 41, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) );
 }
@@ -238,14 +229,26 @@ html {
   box-shadow: 0px -10px 30px 0px rgba(0, 0, 0, 0.25);
 }
 
+.claiming-bg {
+  background: linear-gradient(180deg, rgba(104, 80, 243, 0.00) 0%, #6850F3 100%), #0B0B0B;
+  box-shadow: 0px 50px 30px -30px #00000059;
+}
+
+.your-farms-bg {
+  fill: rgba(217, 217, 217, 0.07);
+  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.35));
+}
+
 .scroll-hidden {
+  background: linear-gradient(180deg, rgba(104, 80, 243, 0.00) 0%, #6850F3 100%), #0B0B0B;
   -ms-overflow-style: none;
+  box-shadow: 0px 50px 30px -30px #00000059;
   scrollbar-width: none; 
   &::-webkit-scrollbar {
+
     display: none;
   }
 }
-
 .custom-scroll {
   &::-webkit-scrollbar {
     width: 7.5px;
@@ -263,3 +266,5 @@ html {
     background-color: #0E0F10;
   }
 }
+
+

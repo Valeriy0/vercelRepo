@@ -19,7 +19,7 @@ export const ActivateLvlModal = ({ openedModal, onClose, level }) => {
   const { onCallTransaction, transactionInfo, resetTransactionInfo } = useCallTransaction();
   const [callRequestMatrix] = useLazyQuery(GET_MATRIX_DATA, { variables: { user: null }, fetchPolicy: 'no-cache' });
 
-  const closeModal = () => {
+  useEffect(() => {
     if (transactionInfo?.isSuccess && account) {
       callRequestMatrix({ variables: { user: account.toLocaleLowerCase() } }).then((result) => {
         if (!!result?.data?.user?.levels) {
@@ -33,6 +33,9 @@ export const ActivateLvlModal = ({ openedModal, onClose, level }) => {
         }
       });
     }
+  }, [transactionInfo]);
+
+  const closeModal = () => {
     onClose();
     resetTransactionInfo();
   };

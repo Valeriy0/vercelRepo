@@ -26,11 +26,11 @@ export const menuList = [
   },
   {
     title: 'Farm',
-    href: '',
+    href: '/farming',
     icon: '/icons/leftBar/menuIcons/grayIcons/farm.svg',
     activeIcon: '/icons/leftBar/menuIcons/yellowIcons/farm.svg',
     mobIcon: '/icons/mobMenu/farm.svg',
-    key: 'farm',
+    key: 'farming',
   },
   {
     title: 'Settings',

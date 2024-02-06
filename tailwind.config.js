@@ -77,6 +77,7 @@ module.exports = {
         item: '0px 25px 40px 0px rgba(0, 0, 0, 0.05), 0px 10px 20px 0px rgba(0, 0, 0, 0.05)',
       },
       backdropBlur: {
+        medium: '25px',
         large: '50px',
       },
     },
