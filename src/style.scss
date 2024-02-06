@@ -240,9 +240,7 @@ html {
 }
 
 .scroll-hidden {
-  background: linear-gradient(180deg, rgba(104, 80, 243, 0.00) 0%, #6850F3 100%), #0B0B0B;
   -ms-overflow-style: none;
-  box-shadow: 0px 50px 30px -30px #00000059;
   scrollbar-width: none; 
   &::-webkit-scrollbar {
 
