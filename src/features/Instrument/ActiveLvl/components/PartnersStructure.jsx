@@ -77,6 +77,7 @@ export const PartnersStructure = ({ matrixs }) => {
           return (
             <motion.div key={itemIndex} variants={partners} className={`${border} rounded-full p-[1px]`}>
               <div
+                onClick={() => alert(`получил деньги ${item?.realReceiver?.id}`)}
                 className={`relative flex items-center justify-center w-[80px] h-[80px] bg-[#2E2E2E] z-[1111] rounded-full sm:w-[60px] sm:h-[60px] `}
               >
                 {!!item?.user?.id && (

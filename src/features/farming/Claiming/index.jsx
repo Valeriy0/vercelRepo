@@ -8,7 +8,7 @@ export const Claiming = ({ farmState, isLoadingFirst }) => {
       <div className="relative flex w-full overflow-hidden claiming-bg ">
         <ClaimInfo farmState={farmState} isLoadingFirst={isLoadingFirst} />
         <YourFarms farmState={farmState} isLoadingFirst={isLoadingFirst} />
-        <img className="absolute right-0 z-[0] h-full w-full sm:hidden" src="/images/farming/claiming/cubes.png" />
+        <img className="absolute right-0 z-[0] h-full  sm:hidden" src="/images/farming/claiming/1.png" />
         <img className="hidden sm:flex absolute right-0 z-[1]  " src="/images/farming/claiming/mobCubes.png" />
       </div>
     </div>

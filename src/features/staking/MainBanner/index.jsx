@@ -9,7 +9,7 @@ export const MainBanner = () => {
                         <span className="text-[52px] text-white poppins font-medium leading-[60px] sm:text-[36px] sm:leading-10 sm:text-center">Liquidity for <br/> <span className="text-[#D9E854]">staked</span> tokens</span>
                         <span className="text-white font-light sm:text-center">Simplified and secure participation in staking</span>
                     </div>
-                    <button className="flex items-center justify-center shadow-item bg-[#6850F3] py-3.5 rounded-2xl sm:w-full">
+                    <button className="flex items-center justify-center shadow-item bg-secondary-500 py-3.5 rounded-2xl sm:w-full">
                         <span className="text-white poppins font-medium">Stake Now</span>
                     </button>
                 </div>

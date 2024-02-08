@@ -1,10 +1,8 @@
 import React from 'react';
 import { DialogContent, DialogOverlay } from '@reach/dialog';
 import clsx from 'clsx';
-import { MobMenu } from '../../components';
-import { Header } from '../../components';
 
-export const Modal = ({ isOpened, onClose, children, className, isDisableOnClose }) => {
+export const Modal = ({ isOpened, onClose, children, className, isDisableOnClose, withoutClose }) => {
   const preventDefaultCallBack = (callback) => (e) => {
     e.preventDefault();
 
@@ -13,7 +11,7 @@ export const Modal = ({ isOpened, onClose, children, className, isDisableOnClose
 
   return (
     <DialogOverlay
-      className="header-dialog-overlay !backdrop-blur-[15px] sm:flex sm:flex-col sm:!justify-end "
+      className="header-dialog-overlay !backdrop-blur-[15px] sm:flex sm:flex-col sm:!justify-end  "
       isOpen={isOpened}
       as="div"
       onClick={!isDisableOnClose && preventDefaultCallBack(onClose)}
@@ -30,7 +28,7 @@ export const Modal = ({ isOpened, onClose, children, className, isDisableOnClose
 
         {!isDisableOnClose && (
           <div
-            className="flex right-8 top-8 cursor-pointer w-[30px] h-[30px] absolute sm:right-[17px] "
+            className={`${withoutClose && "hidden"} flex right-8 top-8 cursor-pointer w-[30px] h-[30px] absolute sm:right-[17px]`}
             onClick={preventDefaultCallBack(onClose)}
             onTouchEnd={preventDefaultCallBack(onClose)}
           >
