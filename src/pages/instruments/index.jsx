@@ -40,7 +40,7 @@ export const Instrument = () => {
           <div className="flex flex-col items-start rounded-large sm:rounded-3xl instrument-main-bg border-[1px] border-white-100">
             {!!allActiveLvls &&
               allActiveLvls?.map((item, itemIndex) => (
-                <ActiveLvl key={itemIndex} {...item} matrixs={item.matrixs[itemIndex]} />
+                <ActiveLvl key={itemIndex} {...item} matrixs={item.matrixs} />
               ))}
             {nextLvlToActivate && <LevelActivating nextLvl={nextLvlToActivate} />}
           </div>

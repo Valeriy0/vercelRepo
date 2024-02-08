@@ -18,7 +18,7 @@ export const menuList = [
   },
   {
     title: 'Staking',
-    href: '',
+    href: '/staking',
     icon: '/icons/leftBar/menuIcons/grayIcons/staking.svg',
     activeIcon: '/icons/leftBar/menuIcons/yellowIcons/staking.svg',
     mobIcon: '/icons/mobMenu/staking.svg',

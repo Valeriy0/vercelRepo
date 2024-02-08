@@ -130,6 +130,7 @@ export const CheckConnect = () => {
   if (currentUser?.id) {
     return null;
   }
+
   return (
     <div className="flex items-center justify-center absolute top-0 left-0 w-full h-screen bg-[#0B0B0B] z-[99999] overflow-hidden">
       <div style={styleBg} className="w-[41%] h-full" />

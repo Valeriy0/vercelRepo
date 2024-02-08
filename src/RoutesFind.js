@@ -4,6 +4,7 @@ import { Dashboard } from './pages/dashboard';
 import { Farming } from './pages/farming';
 import { Instrument } from './pages/instruments';
 import { Settings } from './pages/settings/index.';
+import { Staking } from './pages/staking';
 
 export const RoutesFind = () => {
   return (
@@ -14,6 +15,7 @@ export const RoutesFind = () => {
         <Route path="/instruments" element={<Instrument />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/farming" element={<Farming />} />
+        <Route path="/staking" element={<Staking />} />
       </Routes>
     </Router>
   );

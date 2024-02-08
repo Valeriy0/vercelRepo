@@ -54,6 +54,7 @@ export const Register = ({}) => {
         </div>
       );
     }
+
     return null;
   }, [openedUplineInput, upline]);
 

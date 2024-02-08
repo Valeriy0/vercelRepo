@@ -38,67 +38,11 @@ export const contractFarmingPoolAbi = [
     type: 'event',
   },
   {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'account',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'period',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'amountWithBonus',
-        type: 'uint256',
-      },
-    ],
-    name: 'Staked',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: 'address',
-        name: 'account',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'amountWithBonus',
-        type: 'uint256',
-      },
-    ],
-    name: 'Unstaked',
-    type: 'event',
-  },
-  {
     inputs: [],
-    name: 'feeReceiver',
+    name: 'frgx',
     outputs: [
       {
-        internalType: 'address',
+        internalType: 'contract IToken',
         name: '',
         type: 'address',
       },
@@ -107,13 +51,38 @@ export const contractFarmingPoolAbi = [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'frgx',
-    outputs: [
+    inputs: [
       {
-        internalType: 'contract IToken',
+        internalType: 'address',
         name: '',
         type: 'address',
+      },
+    ],
+    name: 'historicalRewardReceived',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'historicalShares',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
       },
     ],
     stateMutability: 'view',
@@ -160,6 +129,19 @@ export const contractFarmingPoolAbi = [
   },
   {
     inputs: [],
+    name: 'qornexRouter',
+    outputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
     name: 'renounceOwnership',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -174,6 +156,44 @@ export const contractFarmingPoolAbi = [
       },
     ],
     name: 'rewardDebt',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'rewardReceived',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'shares',
     outputs: [
       {
         internalType: 'uint256',
@@ -226,52 +246,13 @@ export const contractFarmingPoolAbi = [
   {
     inputs: [
       {
-        internalType: 'address',
-        name: '',
-        type: 'address',
-      },
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    name: 'userStakes',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'amountWithBonus',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'activationTime',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'endTime',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
         internalType: 'contract IToken',
         name: '_frgx',
         type: 'address',
       },
       {
         internalType: 'address',
-        name: '_feeReceiver',
+        name: '_qornexRouter',
         type: 'address',
       },
     ],
@@ -281,117 +262,19 @@ export const contractFarmingPoolAbi = [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'availablePeriods',
-    outputs: [
-      {
-        internalType: 'uint256[]',
-        name: 'periods',
-        type: 'uint256[]',
-      },
-      {
-        internalType: 'uint256[]',
-        name: 'bonuses',
-        type: 'uint256[]',
-      },
-    ],
-    stateMutability: 'pure',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'period',
-        type: 'uint256',
-      },
-    ],
-    name: 'getPeriodData',
-    outputs: [
-      {
-        internalType: 'bool',
-        name: 'isValid',
-        type: 'bool',
-      },
-      {
-        internalType: 'uint256',
-        name: 'bonus',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'pure',
-    type: 'function',
-  },
-  {
     inputs: [
       {
         internalType: 'address',
         name: 'account',
         type: 'address',
       },
-    ],
-    name: 'getUserTotalStakeWithBonus',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'res',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address',
-      },
-    ],
-    name: 'findEmptySlot',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
       {
         internalType: 'uint256',
         name: 'amount',
         type: 'uint256',
       },
-      {
-        internalType: 'uint256',
-        name: 'period',
-        type: 'uint256',
-      },
     ],
-    name: 'stake',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-      {
-        internalType: 'uint256',
-        name: 'slot',
-        type: 'uint256',
-      },
-    ],
-    name: 'unstake',
+    name: 'stakeFor',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -406,34 +289,16 @@ export const contractFarmingPoolAbi = [
   {
     inputs: [
       {
-        internalType: 'uint256',
-        name: 'storedAmount',
-        type: 'uint256',
-      },
-    ],
-    name: 'update',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
         internalType: 'address',
         name: 'account',
         type: 'address',
       },
-      {
-        internalType: 'uint256',
-        name: 'slot',
-        type: 'uint256',
-      },
     ],
-    name: 'calculateWithdrawComission',
+    name: 'userRewardsLimit',
     outputs: [
       {
         internalType: 'uint256',
-        name: 'percents',
+        name: '',
         type: 'uint256',
       },
     ],

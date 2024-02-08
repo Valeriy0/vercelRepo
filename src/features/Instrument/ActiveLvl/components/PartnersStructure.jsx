@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { shortenAddress } from '../../../../helpers/format';
 
 export const PartnersStructure = ({ matrixs }) => {
   const checkStatusPartners = (item, index) => {
     if (item) {
-      if (index > 3) {
+      if (!item?.realReceiver) {
         return {
           shadow: 'purple_circle_bg',
           border: 'purple_border_color',
@@ -18,7 +19,7 @@ export const PartnersStructure = ({ matrixs }) => {
         isActive: true,
       };
     } else {
-      if (index > 3) {
+      if (index === 3 || index === 5) {
         return {
           shadow: 'purple_circle_bg',
           border: 'purple_border_color',
@@ -76,12 +77,16 @@ export const PartnersStructure = ({ matrixs }) => {
           return (
             <motion.div key={itemIndex} variants={partners} className={`${border} rounded-full p-[1px]`}>
               <div
-                className={`relative flex items-center justify-center w-[80px] h-[80px] bg-[#2E2E2E] z-[1111] rounded-full sm:w-[60px] sm:h-[60px] overflow-hidden`}
+                className={`relative flex items-center justify-center w-[80px] h-[80px] bg-[#2E2E2E] z-[1111] rounded-full sm:w-[60px] sm:h-[60px] `}
               >
+                {!!item?.user?.id && (
+                  <span className='matrix_user_id px-1.5 py-1 absolute -top-5 left-1/2 -translate-x-1/2 text-sm sm:text-xs bg-white-70 rounded-[1000px] text-white-500'>{shortenAddress(item?.user?.id)}</span>
+                )}
                 <img
                   className={`${isActive ? '' : 'grayscale opacity-10'} z-[1111]`}
                   src={`/icons/instrument/${icon}.svg`}
                 />
+                <span className='absolute -bottom-3 left-1/2 -translate-x-1/2 text-white'>{itemIndex+1}</span>
                 {isActive && <div className={`${shadow} blur-[20px] w-[26px] h-[26px] absolute`} />}
               </div>
             </motion.div>

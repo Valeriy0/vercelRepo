@@ -265,4 +265,36 @@ html {
   }
 }
 
+.staking-banner-bg {
+  background: linear-gradient(180deg, rgba(104, 80, 243, 0.00) 0.04%, #6850F3 101.13%);
+  box-shadow: 0px 50px 30px -30px rgba(0, 0, 0, 0.35);
+}
 
+.staking-static-bg {
+  background: linear-gradient(90deg, #0B0B0B 9.5%, rgba(11, 11, 11, 0) 52%, #0B0B0B 89%);
+  border: 1px solid rgba(104, 80, 243, 0.30);
+}
+
+.farms-bg {
+  background: linear-gradient(113deg, rgba(40, 40, 40, 0.50) 5.44%, rgba(31, 31, 31, 0.25) 100%), rgba(0, 0, 0, 0.60);
+  box-shadow: 0px 50px 30px -30px rgba(0, 0, 0, 0.35);
+}
+
+
+.farms-plus-icon-bg {
+  background: linear-gradient(113deg, rgba(40, 40, 40, 0.50) 5.44%, rgba(31, 31, 31, 0.25) 100%);
+  box-shadow: drop-shadow(0px 25px 40px rgba(0, 0, 0, 0.05)) drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.05));
+}
+
+.matrix {
+  &_user_id {
+    box-shadow: 0px 25px 40px 0px rgba(0, 0, 0, 0.05), 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(50px);  
+  }
+}
+
+button {
+  &:disabled {
+    opacity: 0.5;
+  }
+}

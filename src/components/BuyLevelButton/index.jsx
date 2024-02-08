@@ -64,21 +64,25 @@ export const BuyLevelButton = ({
     callChecks();
   }, [active, account, chainId, count]);
 
-  const handleClickAction = () => {
-    if (isSuccessAll) {
-      if (level === 1 && isFirstBuy) {
-        registration(uplineData).then((result) => {
-          onCallTransaction(result);
-        });
-      } else {
-        upgradeLvl(level).then((result) => {
-          onCallTransaction(result);
-        });
-      }
-    }
+  const handleClickAction = async () => {
+    try {
+      if (isSuccessAll) {
+        if (level === 1 && isFirstBuy) {
+          const result = await registration(uplineData);
 
-    if (statuses.checkApprove === STATUSES_ENUM.ERROR) {
-      callApprove();
+          onCallTransaction(result);
+        } else {
+          const result = await upgradeLvl(level);
+
+          onCallTransaction(result);
+        }
+      }
+
+      if (statuses.checkApprove === STATUSES_ENUM.ERROR) {
+        callApprove();
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 

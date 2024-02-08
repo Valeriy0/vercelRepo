@@ -59,25 +59,74 @@ export const matrixInfoRequest = (userAddress) => {
               status
             }
             place4 {
+              value
+              receiver {
+                id
+              }
+              realReceiver {
+                id
+              }
               user {
                 id
               }
+              status
             }
             place5 {
+              value
+              receiver {
+                id
+              }
+              realReceiver {
+                id
+              }
               user {
                 id
               }
+              status
             }
             place6 {
+              value
+              receiver {
+                id
+              }
+              realReceiver {
+                id
+              }
               user {
                 id
               }
+              status
             }
           }
         }
       }
     }`;
 };
+
+export const CHECK_UPLINE_ADDRESS = gql`
+  query userData($user: String!) {
+    user(id: $user) {
+      id
+      refNumber
+      levels {
+        levelNumber
+        recyclesTotal
+        totalReward
+        reward24
+        lastRewardDay
+      }
+    }
+  }
+`;
+
+export const CHECK_UPLINE_REFNUMBER = gql`
+  query userData($refNumber: String!) {
+    user(refNumber: $refNumber) {
+      id
+      refNumber
+    }
+  }
+`;
 
 export const GET_USER_DATA = gql`
   query userData($user: String!) {
@@ -151,19 +200,43 @@ export const GET_MATRIX_DATA = gql`
             status
           }
           place4 {
+            value
+            receiver {
+              id
+            }
+            realReceiver {
+              id
+            }
             user {
               id
             }
+            status
           }
           place5 {
+            value
+            receiver {
+              id
+            }
+            realReceiver {
+              id
+            }
             user {
               id
             }
+            status
           }
           place6 {
+            value
+            receiver {
+              id
+            }
+            realReceiver {
+              id
+            }
             user {
               id
             }
+            status
           }
         }
       }

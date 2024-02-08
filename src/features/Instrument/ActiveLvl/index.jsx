@@ -9,8 +9,14 @@ import {
 import { Profit, LevelInfo, PartnersStructure } from './components';
 import { PROGRAM_MAX_LEVELS, PROGRAM_NAMES } from '../../../helpers/constants';
 
-export const ActiveLvl = ({ levelNumber, activationTimes, totalReward, matrixs, expiredAt }) => {
+export const ActiveLvl = ({ levelNumber, activationTimes, totalReward, matrixs, expiredAt, recyclesTotal = 0 }) => {
   const isMaxLvl = levelNumber === PROGRAM_MAX_LEVELS?.[PROGRAM_NAMES?.MATRIX_B];
+  const maxCycle = recyclesTotal;
+  const [currentCycle, setCurrentCycle] = useState(maxCycle);
+
+
+  console.log(matrixs);
+
   return (
     <Accordion
       allowZeroExpanded
@@ -26,11 +32,11 @@ export const ActiveLvl = ({ levelNumber, activationTimes, totalReward, matrixs, 
               activationTimes={activationTimes}
               totalReward={totalReward}
             />
-            <LevelInfo levelNumber={levelNumber} />
+            <LevelInfo setCurrentCycle={setCurrentCycle} currentCycle={currentCycle} levelNumber={levelNumber} />
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className="px-9 sm:px-4 pb-[34px]">
-          <PartnersStructure matrixs={matrixs} />
+          <PartnersStructure matrixs={matrixs[currentCycle]} />
         </AccordionItemPanel>
       </AccordionItem>
     </Accordion>
