@@ -8,6 +8,7 @@ import Lottie from 'lottie-react';
 import loadingQornexAnimation from '../../animations/loadingQornex.json';
 import { useSelector } from 'react-redux';
 import { getMatrixB } from '../../store/matrixBSlice/selectors';
+import { LoadingAnimation } from '../../components';
 
 export const Instrument = () => {
   const { account } = useWeb3React();
@@ -30,9 +31,7 @@ export const Instrument = () => {
   const renderContent = useMemo(() => {
     if (matrixInfo?.loading) {
       return (
-        <div className="flex items-center justify-center h-full w-full">
-          <Lottie className="h-[150px]" animationData={loadingQornexAnimation} loop={true} />
-        </div>
+        <LoadingAnimation />
       );
     } else {
       return (

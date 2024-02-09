@@ -7,3 +7,4 @@ export { AnimatedCounter } from './AnimatedCounter';
 export { CheckConnect } from './CheckConnect';
 export { Input } from './Input';
 export { TransactionStatuses } from './TransactionStatuses';
+export { LoadingAnimation } from './LoadingAnimation';

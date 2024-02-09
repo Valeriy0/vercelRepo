@@ -31,16 +31,17 @@ export const CheckConnect = () => {
 
   const initUserInfo = (userAddress) => {
     callRequest({ variables: { user: userAddress.toLocaleLowerCase() } }).then((result) => {
-      console.log(result)
       if (!!result?.data?.user?.id) {
         const { id, refNumber, referral } = result?.data?.user;
         dispatch(updateUser({ id, refNumber, referral }));
+      } else {
+        dispatch(updateUser({ id: '' }));
       }
     });
   };
 
   useEffect(() => {
-    if ((currentUser?.id, account)) {
+    if (currentUser?.id && account) {
       callRequestMatrix({ variables: { user: account.toLocaleLowerCase() } }).then((result) => {
         if (!!result?.data?.user && !!result?.data?.user?.levels) {
           dispatch(
@@ -57,6 +58,7 @@ export const CheckConnect = () => {
 
   useEffect(() => {
     if (account) {
+      dispatch(updateUser({ id: '' }));
       initUserInfo(account);
     }
   }, [account]);
@@ -105,7 +107,7 @@ export const CheckConnect = () => {
             {WALLETS?.map((wallet) => {
               return (
                 <div
-                  className="flex items-center space-x-5 rounded-[20px] border border-[1px] border-white-100 w-full p-2 cursor-pointer hover:bg-darkPurple"
+                  className="flex items-center space-x-5 rounded-[20px] border border-[1px] border-white-100 hover:bg-white-50 w-full p-2 cursor-pointer hover:bg-darkPurple"
                   onClick={onWalletClick(wallet)}
                   key={wallet.title}
                 >
@@ -132,8 +134,8 @@ export const CheckConnect = () => {
   }
 
   return (
-    <div className="flex items-center justify-center absolute top-0 left-0 w-full h-screen bg-[#0B0B0B] z-[99999] overflow-hidden">
-      <div style={styleBg} className="w-[41%] h-full" />
+    <div className="flex sm:flex-col items-center justify-center absolute top-0 left-0 w-full h-screen bg-[#0B0B0B] z-[99999] overflow-hidden">
+      <div style={styleBg} className="w-[41%] sm:w-full h-full" />
       <div className="z-[10] w-[59%] sm:w-full h-full flex flex-col items-center justify-center p-2.5">
         {account && (loading || !called) ? (
           <Lottie animationData={loadingQornexAnimation} loop={true} />

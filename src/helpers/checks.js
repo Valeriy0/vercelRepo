@@ -9,14 +9,12 @@ export const nameToContractConfig = {
 };
 
 export const checkBalance = async ({ account, getContract, provider, frgxMinPrice = 10 }) => {
-  const isDev = !!(config?.stand && config?.stand === 'dev');
-
   try {
     if (!!account && !!provider) {
       const contract = await getContract(ContractNames.FRGX);
       let balanceFrgx = parseInt(await contract.balanceOf(account)) / 1e18;
 
-      if (isDev || balanceFrgx >= Number(frgxMinPrice)) {
+      if (balanceFrgx >= Number(frgxMinPrice)) {
         return Promise.resolve();
       } else {
         return Promise.reject();

@@ -52,7 +52,7 @@ export const ActivateLvlModal = ({ openedModal, onClose, level }) => {
         <>
           <div className="flex-1 flex justify-between w-full items-center">
             <div className="flex justify-center items-center w-[57px] h-[28px] bg-primary-500 rounded-[40px]">
-              <span className="poppins text-primary-950 font-medium leading-none">{count} x</span>
+              <span className="poppins text-primary-950 font-medium leading-none">{PROGRAM_EXPIRED?.[PROGRAM_NAMES.MATRIX_B][level]} x {count}</span>
             </div>
             <span className="text-white poppins text-[80px] font-medium sm:leading-none">
               <AnimatedCounter endNum={PROGRAM_EXPIRED?.[PROGRAM_NAMES.MATRIX_B][level] * count} />

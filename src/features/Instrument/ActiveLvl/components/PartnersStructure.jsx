@@ -81,13 +81,12 @@ export const PartnersStructure = ({ matrixs }) => {
                 className={`relative flex items-center justify-center w-[80px] h-[80px] bg-[#2E2E2E] z-[1111] rounded-full sm:w-[60px] sm:h-[60px] `}
               >
                 {!!item?.user?.id && (
-                  <span className='matrix_user_id px-1.5 py-1 absolute -top-5 left-1/2 -translate-x-1/2 text-sm sm:text-xs bg-white-70 rounded-[1000px] text-white-500'>{shortenAddress(item?.user?.id)}</span>
+                  <span className='matrix_user_id px-1.5 py-1 absolute -top-5 left-1/2 -translate-x-1/2 text-sm sm:text-xs bg-white-70 rounded-[1000px] text-white-500'>{shortenAddress(item?.user?.id, 3)}</span>
                 )}
                 <img
                   className={`${isActive ? '' : 'grayscale opacity-10'} z-[1111]`}
                   src={`/icons/instrument/${icon}.svg`}
                 />
-                <span className='absolute -bottom-3 left-1/2 -translate-x-1/2 text-white'>{itemIndex+1}</span>
                 {isActive && <div className={`${shadow} blur-[20px] w-[26px] h-[26px] absolute`} />}
               </div>
             </motion.div>

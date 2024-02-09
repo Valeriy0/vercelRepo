@@ -9,7 +9,7 @@ import { useRegistration } from '../../helpers/hooks/useRegistration';
 import { useUpgradeLvl } from '../../helpers/hooks/useUpgradeLvl';
 import { useApolloClient } from '@apollo/client';
 
-const getChecksCallbacks = (web3Props, getContract, level = 1) => {
+const getChecksCallbacks = (web3Props, getContract, level = 1, count = 1) => {
   const contractType = CONTRACT_NAMES.MATRIX_B;
   const funcProps = { getContract, ...web3Props, contractType };
 
@@ -22,7 +22,7 @@ const getChecksCallbacks = (web3Props, getContract, level = 1) => {
         key: 'checkBalance',
         funcProps: {
           ...funcProps,
-          frgxMinPrice: PROGRAM_PRICES[PROGRAM_NAMES.MATRIX_B][level],
+          frgxMinPrice: PROGRAM_PRICES[PROGRAM_NAMES.MATRIX_B][level] * count,
         },
       },
       {
@@ -31,7 +31,7 @@ const getChecksCallbacks = (web3Props, getContract, level = 1) => {
         funcProps: {
           ...funcProps,
           name: CONTRACT_NAMES.MATRIX_B,
-          price: PROGRAM_PRICES[PROGRAM_NAMES.MATRIX_B][level],
+          price: PROGRAM_PRICES[PROGRAM_NAMES.MATRIX_B][level] * count,
         },
       },
     ],
@@ -54,10 +54,12 @@ export const BuyLevelButton = ({
   const { registration } = useRegistration();
   const { upgradeLvl } = useUpgradeLvl();
   const { statuses, callChecks, approveInfo, callApprove } = useApproveWithChecks(
-    getChecksCallbacks(web3Props, getContract, level * count),
+    getChecksCallbacks(web3Props, getContract, level, count),
   );
   const isSuccessAll = Object.values(statuses).every((status) => status === STATUSES_ENUM.SUCCESS);
   const isLoadingAny = Object.values(statuses).some((status) => status === STATUSES_ENUM.WAIT);
+
+  console.log(statuses);
 
   useEffect(() => {
     client.resetStore();
@@ -72,7 +74,7 @@ export const BuyLevelButton = ({
 
           onCallTransaction(result);
         } else {
-          const result = await upgradeLvl(level);
+          const result = await upgradeLvl(level, count);
 
           onCallTransaction(result);
         }

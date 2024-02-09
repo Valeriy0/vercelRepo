@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { BreadCrumbs, LevelsStatus } from 'components';
 import { BaseLayout } from 'layouts';
 import { Claiming } from '../../features/farming/Claiming';
@@ -7,6 +7,7 @@ import { useGetContract } from '../../helpers/hooks/useGetContract';
 import { CONTRACT_NAMES } from '../../helpers/constants';
 import { useWeb3React } from '@web3-react/core';
 import { formatEther } from '@ethersproject/units';
+import { LoadingAnimation } from '../../components';
 
 export const Farming = () => {
   const tm = useRef(null);
@@ -56,6 +57,18 @@ export const Farming = () => {
     };
   }, [account]);
 
+  const renderContent = useMemo(() => {
+    if (isLoadingFirst || !farmState) {
+      return <LoadingAnimation />;
+    }
+    return (
+      <div className="flex flex-col space-y-6">
+        <Claiming farmState={farmState} isLoadingFirst={isLoadingFirst} />
+        <Statics farmState={farmState} isLoadingFirst={isLoadingFirst} />
+      </div>
+    )
+  }, [farmState, isLoadingFirst]);
+
   return (
     <BaseLayout>
       <div className="flex items-center space-x-6 pb-6 relative sm:flex-col sm:space-x-0 sm:space-y-4 sm:items-start">
@@ -63,10 +76,7 @@ export const Farming = () => {
           <LevelsStatus />
         </BreadCrumbs>
       </div>
-      <div className="flex flex-col space-y-6">
-        <Claiming farmState={farmState} isLoadingFirst={isLoadingFirst} />
-        <Statics farmState={farmState} isLoadingFirst={isLoadingFirst} />
-      </div>
+      {renderContent}
     </BaseLayout>
   );
 };

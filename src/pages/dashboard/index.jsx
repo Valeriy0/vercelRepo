@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BreadCrumbs, LevelsStatus } from 'components';
 import { UserProfit } from '../../features/dashboard/Main/UserProfit';
 import { TokenOverview } from '../../features/dashboard/Main/TokenOverview';
@@ -6,6 +6,9 @@ import { UserInfo } from '../../features/dashboard/RightBar/UserInfo';
 import { BaseLayout } from 'layouts';
 import { getUser } from '../../store/userSlice/selectors';
 import { useSelector } from 'react-redux';
+import { useGetContract } from '../../helpers/hooks/useGetContract';
+import { ContractNames } from '../../helpers/constants';
+import { useWeb3React } from '@web3-react/core';
 
 export const Dashboard = () => {
   const currentUser = useSelector(getUser);
